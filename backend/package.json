@@ -1,0 +1,17 @@
+{
+  "name": "flight-booking",
+  "version": "1.0.0",
+  "description": "- user sign in \r - user login",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "shivam singh",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2",
+    "mongoose": "^8.12.1",
+    "validator": "^13.12.0"
+  }
+}
