@@ -1,29 +1,34 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const User = require("../models/user");
-const validator = require("validator");
-
-module.exports.signUp= async(req,res)=>{
-    const {firstname,lastname,age,gender,email,password} = req.body;
+const mongoose=require("mongoose");
+const User=require("../models/user");
+const validator=require("validator");
+module.exports.signup= async (req,res)=>{
+    const {firstName,lastName,age,gender,email,password,avatar}=req.body;
     try{
-        if(!email|| !password|| !firstname||!lastname||! age|| !gender  ){
-            res.json({message:"please enter the full detils"})
-            
+        if(!email || !password || !firstName || !lastName || !gender || !age ){
+            res.json({message:"please enter full details"});
         }
-        console.log(email);
-        const useremail= await User.findOne({email:email});
-       
-        if(useremail){
-            res.json({message:"email is already exits"})
+        const userEmail=await User.findOne({email:email});
+        if(userEmail){
+            res.json({message:"email already exits"});
         }
         if(!validator.isEmail(email)){
-            res.send("email is not proper");
+            res.send("email not correct");
         }
         if(!validator.isStrongPassword(password)){
-            res.send("give strong password");
+            res.send("Password not strong");
         }
-    } catch(err){
+        const user=new User({
+            firstName,
+            lastName,
+            age,
+            gender,
+            email,
+            password,
+            avatar
+        });
+        await user.save();
+        res.send(user);
+    }catch(err){
         console.log(err);
     }
 }
-
