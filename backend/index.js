@@ -2,7 +2,11 @@ const express=require("express");
 const mongoose=require("mongoose");
 const app=express();
 const userRouter=require("./routes/userroutes");
+const profileRouter = require("./routes/profileRouter")
+const cookieParser = require("cookie-parser");
+
 app.use(express.json());
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 const mongoDB=async()=>{
     await mongoose.connect("mongodb://localhost:27017/flight_booking");
@@ -15,7 +19,7 @@ mongoDB()
     console.log(err);
 })
 app.use("/api/user/",userRouter)
-
+app.use("/api/profile",profileRouter);
 app.get("/",(req,res)=>{
     res.send("hello");
 })

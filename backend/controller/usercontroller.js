@@ -1,8 +1,9 @@
-const mongoose=require("mongoose");
+
 const User=require("../models/user");
 const validator=require("validator");
 const user = require("../models/user");
 const bcrypt = require("bcrypt");
+const jwt= require("jsonwebtoken");
 module.exports.signup= async (req,res)=>{
     console.log(req.body);
     const {firstName,lastName,age,gender,email,password,avatar}=req.body;
@@ -48,6 +49,9 @@ module.exports.login=async(req,res)=>{
         const comaparePass  =await bcrypt.compare(password,user.password);
         if(!comaparePass){
             res.status(400).send("invalid password")
+        } else{
+            const  token =jwt.sign({_id:user.id},"shivam1512");
+            res.cookie("token",token);
         }
         res.status(200).send("login succesfully")
     } catch(err){ 
@@ -55,11 +59,3 @@ module.exports.login=async(req,res)=>{
     }
 }
 
-module.exports.updateProfile=async(req,res)=>{
-    try{
-        const{ firstName , lastName , age , avatar , password } = req.body;
-        
-    }catch(err){
-        console.log(err);
-    }
-}
