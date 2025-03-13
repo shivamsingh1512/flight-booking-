@@ -3,7 +3,6 @@ const User = require("./user");
 const ticketSchema = mongoose.Schema({
     owner:{
         type:mongoose.Schema.Types.ObjectId,
-        required:true,
         ref:User
     },
     ticketOwner:{
