@@ -56,11 +56,3 @@ module.exports.getProfile= async(req,res)=>{
     }
 }
 
-module.exports.getTickets=async(req,res)=>{
-  try{
-    const ticket=await Ticket.find({owner:req.user._id});
-    res.status(201).send(ticket);
-  }catch(err){
-    console.log(err);
-  }
-}
