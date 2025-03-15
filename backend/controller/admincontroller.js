@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const validator = require("validator");
+const Ticket = require("../models/ticketSchema")
 const bcrypt = require("bcrypt");
 
 
@@ -53,4 +54,13 @@ module.exports.getProfile= async(req,res)=>{
     catch(err){
         console.log(err);
     }
+}
+
+module.exports.getTickets=async(req,res)=>{
+  try{
+    const ticket=await Ticket.find({owner:req.user._id});
+    res.status(201).send(ticket);
+  }catch(err){
+    console.log(err);
+  }
 }

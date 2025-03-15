@@ -22,6 +22,7 @@ mongoDB()
 app.use("/api/user/",userRouter)
 app.use("/api/profile",profileRouter);
 app.use("/api/ticket",ticketRouter);
+
 app.get("/",(req,res)=>{
     res.send("hello");
 })
