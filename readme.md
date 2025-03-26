@@ -5,7 +5,7 @@
 
 ### models  
 
--  user = {name , lname , email,gender, contact , password , age }.
+-  user = {name , lname , email,gender, contact , password , age , avatar}.
 -  flight = { ref , from , to , date, departure_time , price ,total_seats , seats_Availabe , status}.
 -  
 
@@ -25,3 +25,7 @@
 -  get/allTicket
 -  post/deleteTicket
 -  get/ticketStatus
+
+### requirements 
+-  npm init 
+-  npm i express

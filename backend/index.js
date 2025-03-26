@@ -1,10 +1,17 @@
 const express=require("express");
+const cors = require("cors");
 const mongoose=require("mongoose");
 const app=express();
 const userRouter=require("./routes/userroutes");
 const profileRouter = require("./routes/profileRouter")
 const ticketRouter = require("./routes/ticketRouter")
 const cookieParser = require("cookie-parser");
+
+app.use(cors({
+    origin:"http://localhost:5173/",
+    method: "GET,POST,PUT,DELETE",
+    credentials: true
+}));
 
 app.use(express.json());
 app.use(cookieParser());
